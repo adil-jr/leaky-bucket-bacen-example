@@ -14,7 +14,8 @@
     "baseUrl": ".",
     "paths": {
       "@leaky-bucket/*": ["packages/*/src"]
-    }
+    },
+    "types": ["node", "jest"]
   },
   "exclude": ["node_modules", "**/dist", "**/node_modules"]
 }
