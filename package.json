@@ -1,4 +1,32 @@
 {
   "name": "leaky-bucket-bacen",
-  "packageManager": "yarn@4.9.1"
+  "version": "1.0.0",
+  "private": true,
+  "description": "Implementação do Leaky Bucket baseado nas especificações do BACEN para PIX.",
+  "author": "Adilson Júnior <adil.jr@outlook.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "server": "yarn workspace @leaky-bucket/server dev",
+    "build": "yarn workspaces foreach run build",
+    "test": "jest"
+  },
+  "resolutions": {
+    "glob": "^10.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "jest": "^29.7.0",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
 }
