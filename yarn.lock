@@ -866,6 +866,7 @@ __metadata:
     "@types/koa-bodyparser": "npm:^4.3.12"
     "@types/koa-router": "npm:^7.4.8"
     "@types/koa__cors": "npm:^5.0.0"
+    dotenv: "npm:^17.2.1"
     koa: "npm:^3.0.1"
     koa-bodyparser: "npm:^4.4.1"
     koa-router: "npm:^14.0.0"
@@ -2072,6 +2073,13 @@ __metadata:
   version: 4.0.2
   resolution: "diff@npm:4.0.2"
   checksum: 10c0/81b91f9d39c4eaca068eb0c1eb0e4afbdc5bb2941d197f513dd596b820b956fef43485876226d65d497bebc15666aa2aa82c679e84f65d5f2bfbf14ee46e32c1
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^17.2.1":
+  version: 17.2.1
+  resolution: "dotenv@npm:17.2.1"
+  checksum: 10c0/918dd2f9d8b8f86b0afabad9534793d51de3718c437f9e7b6525628cf68c1d4ae768cc37a5afff38c066f58a8ecf549f4ac6cd5617485bd328e826112cc2650a
   languageName: node
   linkType: hard
 
