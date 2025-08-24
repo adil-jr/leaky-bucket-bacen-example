@@ -1,6 +1,6 @@
 import { LeakyUser } from "./userModel";
 
-const users = new Map<string, LeakyUser>([
+const initialUsersData: Array<[string, LeakyUser]> = [
   [
     "alice-super-secret-token",
     {
@@ -8,7 +8,7 @@ const users = new Map<string, LeakyUser>([
       name: "Alice",
       token: "alice-super-secret-token",
       tokens: 10,
-      lastReplenished: new Date(),
+      lastReplenished: new Date("2025-08-23T23:30:00.000Z"),
     },
   ],
   [
@@ -18,10 +18,19 @@ const users = new Map<string, LeakyUser>([
       name: "Bob",
       token: "bob-super-secret-token",
       tokens: 10,
-      lastReplenished: new Date(),
+      lastReplenished: new Date("2025-08-23T23:30:00.000Z"),
     },
   ],
-]);
+];
+
+const users = new Map<string, LeakyUser>();
+
+const initializeUsers = () => {
+  users.clear();
+  initialUsersData.forEach(([token, user]) => {
+    users.set(token, { ...user });
+  });
+};
 
 export const findUserByToken = (token: string): LeakyUser | undefined => {
   return users.get(token);
@@ -34,3 +43,9 @@ export const updateUserState = (user: LeakyUser): LeakyUser => {
   users.set(user.token, user);
   return user;
 };
+
+export const resetUserStateForTesting = () => {
+  initializeUsers();
+};
+
+initializeUsers();
