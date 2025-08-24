@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "b78b5a8e-a23c-442d-9b5a-e75c2e17e3f1",
+    "name": "Leaky Bucket - BACEN PIX",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "0"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            ""
+          ]
+        },
+        "description": "Verifica se a API está online e respondendo."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Authenticated User (Success)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/me",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "me"
+          ]
+        },
+        "description": "Retorna os detalhes do usuário autenticado, incluindo seu estado atual de tokens."
+      },
+      "response": []
+    },
+    {
+      "name": "PIX Key Lookup",
+      "item": [
+        {
+          "name": "[SUCCESS] Consume Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pix/keys/a0b1c2d3-e4f5-g6h7-i8j9-k0l1m2n3o4p5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pix",
+                "keys",
+                "a0b1c2d3-e4f5-g6h7-i8j9-k0l1m2n3o4p5"
+              ]
+            },
+            "description": "Simula uma consulta PIX bem-sucedida, consumindo um token do usuário. Execute múltiplas vezes para ver o `tokens_left` diminuir."
+          },
+          "response": []
+        },
+        {
+          "name": "[FAIL] Rate Limit Exceeded",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pix/keys/another-pix-key",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pix",
+                "keys",
+                "another-pix-key"
+              ]
+            },
+            "description": "Para testar o erro 429, execute a requisição '[SUCCESS] Consume Token' 10 vezes com o mesmo token e, em seguida, execute esta. Esta requisição é idêntica à de sucesso, mas serve como um marcador para o teste de rate limit."
+          },
+          "response": []
+        },
+        {
+          "name": "[FAIL] Invalid Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "este-token-nao-existe-123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pix/keys/some-pix-key-123",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pix",
+                "keys",
+                "some-pix-key-123"
+              ]
+            },
+            "description": "Tenta fazer uma consulta com um token inválido. Espera-se um erro 401 Unauthorized."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints relacionados à simulação de consulta de chaves PIX."
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{validTokenAlice}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "validTokenAlice",
+      "value": "alice-super-secret-token",
+      "type": "string"
+    },
+    {
+      "key": "validTokenBob",
+      "value": "bob-super-secret-token",
+      "type": "string"
+    }
+  ]
+}
