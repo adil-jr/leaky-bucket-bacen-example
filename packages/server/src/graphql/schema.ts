@@ -9,16 +9,14 @@ export const typeDefs = `#graphql
   type PixLookupResponse {
     success: Boolean!
     message: String!
-    tokensLeft: Int!
+    user: User!
   }
 
   type Query {
-    """Retorna o usuário atualmente autenticado."""
     me: User
   }
 
   type Mutation {
-    """Simula uma consulta de chave PIX, consumindo um token."""
     lookupPixKey(key: String!): PixLookupResponse
   }
 `;

@@ -11,14 +11,12 @@ type User {
 type PixLookupResponse {
   success: Boolean!
   message: String!
-  tokensLeft: Int!
+  user: User!
 }
 type Query {
-  "Retorna o usuário atualmente autenticado."
   me: User
 }
 type Mutation {
-  "Simula uma consulta de chave PIX, consumindo um token."
   lookupPixKey(key: String!): PixLookupResponse
 }
 "Exposes a URL that specifies the behavior of this scalar."

@@ -30,7 +30,7 @@ export const resolvers = {
       return {
         success: true,
         message: `Successfully looked up PIX key '${args.key}'`,
-        tokensLeft: user.tokens,
+        user: user,
       };
     },
   },
