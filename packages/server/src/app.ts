@@ -20,12 +20,17 @@ export const createApp = async () => {
 
   app.use(
     cors({
-      origin: "http://localhost:3000/graphql",
+      origin: (ctx) => {
+        const allowedOrigin = "http://localhost:5173";
 
-      allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        if (ctx.request.header.origin === allowedOrigin) {
+          return allowedOrigin;
+        }
 
+        return "";
+      },
+      allowMethods: ["GET", "POST", "OPTIONS"],
       allowHeaders: ["Content-Type", "Authorization"],
-
       credentials: true,
     }),
   );
