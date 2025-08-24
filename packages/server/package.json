@@ -7,8 +7,11 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/koa": "^1.1.1",
     "@koa/cors": "^5.0.0",
     "dotenv": "^17.2.1",
+    "graphql": "^16.11.0",
     "koa": "^3.0.1",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^14.0.0"
